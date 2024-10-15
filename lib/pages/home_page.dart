@@ -14,12 +14,12 @@ class _HomePageState extends State<HomePage> {
     ],
   );
 
-  GoogleSignInAccount user;
+  GoogleSignInAccount? user;
 
   @override
   void initState() {
     super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
       if (account != null) {
         setState(() {
           user = account;
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                       height: 30,
                     ),
                     Text(
-                      'Hello, ${user.displayName}!',
+                      'Hello, ${user?.displayName}!',
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.grey[700],
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                     Radius.circular(30),
                   ),
                   child: Image.network(
-                    user.photoUrl,
+                    user?.photoUrl ?? '',
                     height: 50,
                     width: 50,
                   ),
